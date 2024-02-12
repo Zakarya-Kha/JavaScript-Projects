@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Todo list</title>
+</head>
+<body class="bg-slate-500  min-h-screen flex items-center justify-center"">
+    <div class="bg-yellow-400 max-w-md w-full rounded-md p-6 ">
+        <h1 class="text-2xl font-bold text-white">Todo List</h1>
+        <div class="flex items-center mb-4 mt-3">
+            <input type="text" id="taskInput" class="flex-1 p-2 border rounded-md mr-2" placeholder="Add a new task">
+            <button id="addTask" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-300">Add Task</button>
+        </div>
+        <ul id="tasklist" class="list-decimal pl-6"></ul>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded',  function() {
+            const addTaskButton = document.getElementById('addTask')
+            const taskInput = document.getElementById('taskInput')
+            const tasklist = document.getElementById('tasklist')
+
+            addTaskButton.addEventListener('click', function() {
+                const taskText = taskInput.value.trim()
+
+                if (taskText !== ''){
+                    const taskItem = document.createElement('li')
+                    taskItem.className = 'mb-4'
+                    taskItem.innerHTML = `
+                    <span>${taskText}</span>
+                    <button class='text-red-500 ml-2' onclick='removeTask(this)'>Remove</button>
+                    `;
+                    tasklist.appendChild(taskItem)
+                    taskInput.value = '';
+                }
+            })
+        })
+        function removeTask(button) {
+            const taskItem = button.parentElement;
+            taskItem.remove();
+        }
+    </script>
+</body>
+</html>

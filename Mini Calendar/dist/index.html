@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Mini Calendar</title>
+</head>
+<body class="bg-slate-500 flex justify-center items-center h-screen">
+<div class="mac-w-md size-36 max-auto flex ">
+    <div class="bg-white p-10 rounded-l ">
+        <h1 id="date" class="text-4xl font-bold ">30</h1>
+        <p id="day" class="text-slate-500 mt-2">friday</p>
+    </div>
+    <div class="bg-orange-500 p-4 rounded-r">
+        <p id="month" class="text-slate-700 mt-7">april</p>
+        <p id="year" class="text-slate-700">2020</p>
+    </div>
+</div>
+
+<script>
+
+  const date = document.getElementById('date')
+  const day = document.getElementById('day')
+  const month = document.getElementById('month')
+  const year = document.getElementById('year')
+
+  const today = new Date()
+//   console.log(today)
+
+const allDays = ['Sunday', 'Monday', "Tuesday", 'Wenesday', 'Thurday', 'Friday', 'Saturday' ]
+const allMonths = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'Augest', 'Septembar', 'Octubar', 'Novembar', 'Decembar']
+
+
+date.innerHTML= (today.getDate() < 10? '0':'') + today.getDate()
+day.innerHTML = allDays[today.getDay()]
+month.innerHTML = allMonths[today.getMonth()]
+year.innerHTML = today.getFullYear()
+
+
+</script>
+</body>
+</html>

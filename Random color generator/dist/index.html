@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Random backGroundcolor Generator</title>
+</head>
+<body class=" bg-red-500 flex justify-center items-center h-screen">
+
+    <div class="bg-white px-7 py-3 rounded-md ">
+        <h1 id="colorCode" class="text-xl font-bold ">#c11813</h1>
+        <button id="btn" class="bg-blue-600 w-full rounded-xl mt-3 hover:bg-blue-400">click Me</button>
+    </div>
+
+
+    <script>
+        const getColor = () => {
+            const randomNumber = Math.floor(Math.random() * 16777215)
+            const randomCode = '#' + randomNumber.toString(16)
+            document.body.style.backgroundColor = randomCode;
+            document.getElementById('colorCode').innerText=randomCode;
+
+            navigator.clipboard.writeText(randomCode)
+        }
+
+        document.getElementById('btn').addEventListener(
+            'click',
+            getColor
+        )
+    </script>
+    
+</body>
+</html>

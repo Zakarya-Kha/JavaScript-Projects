@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <title>Random Password Generator</title>
+</head>
+
+<body class="bg-gray-200 min-h-screen flex items-center justify-center">
+
+    <div class="bg-white p-8 rounded-md shadow-md max-w-md w-full">
+        <h1 class="text-2xl font-semibold mb-4">Random Password Generator</h1>
+
+        <div class="mb-4">
+            <label for="passwordLength" class="block text-sm font-medium text-gray-600">Password Length</label>
+            <input type="number" id="passwordLength" min="6" max="20" value="8"
+                class="mt-1 p-2 w-full border rounded-md">
+        </div>
+
+        <div class="mb-4">
+            <input type="checkbox" id="includeUppercase" class="mr-2">
+            <label for="includeUppercase" class="text-sm font-medium text-gray-600">Include Uppercase Letters</label>
+        </div>
+
+        <div class="mb-4">
+            <input type="checkbox" id="includeLowercase" class="mr-2">
+            <label for="includeLowercase" class="text-sm font-medium text-gray-600">Include Lowercase Letters</label>
+        </div>
+
+        <div class="mb-4">
+            <input type="checkbox" id="includeNumbers" class="mr-2">
+            <label for="includeNumbers" class="text-sm font-medium text-gray-600">Include Numbers</label>
+        </div>
+
+        <div class="mb-4">
+            <input type="checkbox" id="includeSpecialChars" class="mr-2">
+            <label for="includeSpecialChars" class="text-sm font-medium text-gray-600">Include Special Characters</label>
+        </div>
+
+        <button id="generatePassword" class="bg-blue-500 text-white px-4 py-2 rounded-md">Generate Password</button>
+
+        <div class="mt-4">
+            <label for="generatedPassword" class="block text-sm font-medium text-gray-600">Generated Password</label>
+            <div class="flex">
+                <input type="text" id="generatedPassword" class="mt-1 p-2 w-full border rounded-md" readonly>
+                <button id="copyPassword" class="bg-gray-500 text-white px-4 py-2 rounded-md ml-2">Copy</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('generatePassword').addEventListener('click', function () {
+            const passwordLength = document.getElementById('passwordLength').value;
+            const includeUppercase = document.getElementById('includeUppercase').checked;
+            const includeLowercase = document.getElementById('includeLowercase').checked;
+            const includeNumbers = document.getElementById('includeNumbers').checked;
+            const includeSpecialChars = document.getElementById('includeSpecialChars').checked;
+
+            const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+            const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const numberChars = '0123456789';
+            const specialChars = '!@#$%^&*()_-+=<>?';
+
+            let validChars = '';
+
+            if (includeLowercase) {
+                validChars += lowercaseChars;
+            }
+            if (includeUppercase) {
+                validChars += uppercaseChars;
+            }
+            if (includeNumbers) {
+                validChars += numberChars;
+            }
+            if (includeSpecialChars) {
+                validChars += specialChars;
+            }
+
+            let password = '';
+            for (let i = 0; i < passwordLength; i++) {
+                const randomIndex = Math.floor(Math.random() * validChars.length);
+                password += validChars[randomIndex];
+            }
+
+            document.getElementById('generatedPassword').value = password;
+        });
+
+        document.getElementById('copyPassword').addEventListener('click', function () {
+            const passwordField = document.getElementById('generatedPassword');
+            passwordField.select();
+            document.execCommand('copy');
+            alert('Password copied to clipboard!');
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Drag & Drop </title>
+</head>
+
+<body class="bg-yellow-200 flex justify-center items-center h-screen">
+
+    <div id="left" class="w-72 h-96 m-[20px] border border-dashed bg-slate-600">
+        <div class="list h-2 m-[30px] flex items-center cursor-grab bg-red-300 p-4" draggable="true"><img class="h-3"
+                src="https://cdn-icons-png.flaticon.com/128/30/30414.png" alt="">List Item</div>
+
+        <div class="list h-2 m-[30px] flex items-center cursor-grab bg-red-300 p-4" draggable="true"><img class="h-3"
+                src="https://cdn-icons-png.flaticon.com/128/30/30414.png" alt="">List Item</div>
+
+        <div class="list h-2 m-[30px] flex items-center cursor-grab bg-red-300 p-4" draggable="true"><img class="h-3"
+                src="https://cdn-icons-png.flaticon.com/128/30/30414.png" alt="">List Item</div>
+
+        <div class="list h-2 m-[30px] flex items-center cursor-grab bg-red-300 p-4" draggable="true"><img class="h-3"
+                src="https://cdn-icons-png.flaticon.com/128/30/30414.png" alt="">List Item</div>
+
+        <div class="list h-2 m-[30px] flex items-center cursor-grab bg-red-300 p-4" draggable="true"><img class="h-3"
+                src="https://cdn-icons-png.flaticon.com/128/30/30414.png" alt="">List Item</div>
+
+        <div class="list h-2 m-[30px] flex items-center cursor-grab bg-red-300 p-4" draggable="true"><img class="h-3"
+                src="https://cdn-icons-png.flaticon.com/128/30/30414.png" alt="">List Item</div>
+
+
+    </div>
+
+    <div id="right" class="w-72 h-96 m-[20px] border border-dashed bg-slate-600"></div>
+
+    <script>
+
+        const lists = document.querySelectorAll('.list')
+        const rightBox = document.getElementById('right')
+        const leftBox = document.getElementById('left')
+
+        for (list of lists) {
+            list.addEventListener('dragstart', function (e) {
+                let selected = e.target;
+
+                rightBox.addEventListener('dragover', function (e) {
+                    e.preventDefault();
+                })
+                rightBox.addEventListener('drop', function (e) {
+                    rightBox.appendChild(selected)
+                    selected = null;
+                })
+
+                leftBox.addEventListener('dragover', function (e) {
+                    e.preventDefault();
+                })
+                leftBox.addEventListener('drop', function (e) {
+                    leftBox.appendChild(selected)
+                    selected = null;
+                })
+            })
+
+
+        }
+
+    </script>
+
+</body>
+
+</html>
